@@ -3,6 +3,8 @@ package com.desenvolvimento.persistencia.projeto.historicoslol.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,6 +20,9 @@ import jakarta.persistence.Table;
         @NamedQuery(name = "userPorName", query = "SELECT u FROM User u WHERE u.name = :name")
 })
 @Entity
+@Document
+
+
 @Table(name = "users")
 public class User {
     @Id

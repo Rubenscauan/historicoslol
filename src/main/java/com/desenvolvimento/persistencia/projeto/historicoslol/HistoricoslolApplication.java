@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.desenvolvimento.persistencia.projeto.historicoslol.ui.MenuChampion;
 import com.desenvolvimento.persistencia.projeto.historicoslol.ui.MenuMatch;
@@ -17,7 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication(scanBasePackages = "com.desenvolvimento.persistencia.projeto.historicoslol")
 @EntityScan("com.desenvolvimento.persistencia.projeto.historicoslol.models")
-@EnableJpaRepositories("com.desenvolvimento.persistencia.projeto.historicoslol.dao")
+//@EnableJpaRepositories("com.desenvolvimento.persistencia.projeto.historicoslol.dao.jpa")
+@EnableMongoRepositories("com.desenvolvimento.persistencia.projeto.historicolol.dao.mongo")
+
 @Slf4j
 public class HistoricoslolApplication implements CommandLineRunner {
 	@Autowired

@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.desenvolvimento.persistencia.projeto.historicoslol.dao.UserDao;
+import com.desenvolvimento.persistencia.projeto.historicoslol.dao.jpa.UserDaoJPA;
 import com.desenvolvimento.persistencia.projeto.historicoslol.models.User;
 
 import javax.swing.*;
@@ -17,7 +17,7 @@ import java.util.List;
 public class MenuUser {
 
 	@Autowired
-	private UserDao baseUser;
+	private UserDaoJPA baseUser;
 
 	public void obterUsuario(User user) {
 

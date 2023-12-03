@@ -1,7 +1,6 @@
 ```mermaid
 classDiagram
     
-    User "1" *--"1" Champion
     Match "1" *-- "1" Champion
     User "1" *--* "*" Match
 

@@ -1,25 +1,30 @@
 package com.desenvolvimento.persistencia.projeto.historicoslol.dao;
 
-import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.Optional;
 
 import com.desenvolvimento.persistencia.projeto.historicoslol.models.User;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface UserDao extends JpaRepository<User, Integer>  {
-    
-    public User findFirstByName(String user);
+public interface UserDao {
 
-    @Query("select u from User u where u.name ilike %:name%")
-    public List<User> buscaPorNameContendoString(String name);
+	public User findFirstByName(String name);
 
-    // Native Query
-    @Query(value = "select count(*) from users u", nativeQuery = true)
-    public int conta();
+	public User buscaPrimeiroPorName(String name);
+
+	public List<User> findByNameStartingWithIgnoreCase(String str);
+
+	public List<User> buscaPorNameContendoString(String nome);
+
+	public int conta();
+
+    public void save(User user);
+
+    public void deleteById(String id);
+
+    public Optional<User> findById(String id);
+
+    public List<User> findAll();
+
 }
-
-

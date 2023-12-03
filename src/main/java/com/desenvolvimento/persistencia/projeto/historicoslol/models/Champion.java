@@ -4,17 +4,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.persistence.*;
 
 @NamedQueries({
         @NamedQuery(name = "championPorName", query = "SELECT c FROM Champion c WHERE c.name = :name")
 })
 @Entity
+@Document
 @Table(name = "champions")
 public class Champion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -53,11 +56,11 @@ public class Champion {
                 + ", " + resource + ", Criado no dia " + creationDate;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

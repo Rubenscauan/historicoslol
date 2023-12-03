@@ -1,9 +1,14 @@
 package com.desenvolvimento.persistencia.projeto.historicoslol.models;
 
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.persistence.*;
 
 @Entity
+@Document
+
+
 @Table(name = "matches")
 
 public class Match {

@@ -5,9 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.desenvolvimento.persistencia.projeto.historicoslol.dao.ChampionDao;
-import com.desenvolvimento.persistencia.projeto.historicoslol.dao.MatchDao;
-import com.desenvolvimento.persistencia.projeto.historicoslol.dao.UserDao;
+import com.desenvolvimento.persistencia.projeto.historicoslol.dao.jpa.ChampionDaoJPA;
+import com.desenvolvimento.persistencia.projeto.historicoslol.dao.jpa.MatchDaoJPA;
+import com.desenvolvimento.persistencia.projeto.historicoslol.dao.jpa.UserDaoJPA;
 import com.desenvolvimento.persistencia.projeto.historicoslol.models.Champion;
 import com.desenvolvimento.persistencia.projeto.historicoslol.models.Match;
 import com.desenvolvimento.persistencia.projeto.historicoslol.models.User;
@@ -21,13 +21,13 @@ import java.util.List;
 public class MenuMatch {
 
 	@Autowired
-	private MatchDao baseMatch;
+	private MatchDaoJPA baseMatch;
 
 	@Autowired
-	private UserDao baseUser;
+	private UserDaoJPA baseUser;
 
 	@Autowired
-	private ChampionDao baseChampion;
+	private ChampionDaoJPA baseChampion;
 
 	public void obterPartida(Match match) {
 		List<User> usuarios = baseUser.findAll();

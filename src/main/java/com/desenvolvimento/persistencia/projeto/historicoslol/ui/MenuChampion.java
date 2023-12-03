@@ -3,10 +3,12 @@ package com.desenvolvimento.persistencia.projeto.historicoslol.ui;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.desenvolvimento.persistencia.projeto.historicoslol.models.Champion;
 import com.desenvolvimento.persistencia.projeto.historicoslol.dao.ChampionDao;
+import com.desenvolvimento.persistencia.projeto.historicoslol.dao.jpa.ChampionDaoJPA;
 import javax.swing.*;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ public class MenuChampion {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
 	@Autowired
+	//@Qualifier("ChampionDaoMongo")
 	private ChampionDao baseChampion;
 
 	public void obterChampion(Champion champion) {
@@ -74,7 +77,8 @@ public class MenuChampion {
 						break;
 					case '2':     // Atualizar por Nome
 						nome = JOptionPane.showInputDialog("Digite o Nome do champion a ser alterado");
-						champion = baseChampion.findFirstByName(nome);
+						//champion = baseChampion.findFirstByName(nome);
+						champion = baseChampion.findById(nome).orElse(null);
 						if (champion != null) {
 							obterChampion(champion);
 							baseChampion.save(champion);
@@ -84,7 +88,8 @@ public class MenuChampion {
 						break;
 					case '3':     // Remover por nome
 						nome = JOptionPane.showInputDialog("Nome");
-						champion = baseChampion.findFirstByName(nome);
+						//champion = baseChampion.findFirstByName(nome);
+						champion = baseChampion.findById(nome).orElse(null);
 						if (champion != null) {
 							baseChampion.deleteById(champion.getId());
 						} else {
@@ -94,10 +99,11 @@ public class MenuChampion {
 					case '4':    
 						nome = JOptionPane.showInputDialog("Nome");
 						
-						champions = baseChampion.buscaPorNameContendoString(nome);
+						//champions = baseChampion.buscaPorNameContendoString(nome);
+						champions = baseChampion.findByNameContainingIgnoreCase(nome);
 						listaChampion(champions);
 						break;
-					case '5':     
+					/*case '5':     
 						String region = JOptionPane.showInputDialog("Região");
 						champions = baseChampion.findByRegion(region);
 						listaChampion(champions);
@@ -111,7 +117,7 @@ public class MenuChampion {
                         int quantidade = baseChampion.conta();
 						JOptionPane.showMessageDialog(null,"Foram cadastrados " + quantidade + " Campeões");
 						break;   
-					case '8':
+					*/case '8':
 						listaChampion(baseChampion.findAll());
 						break;
                     case '9':
